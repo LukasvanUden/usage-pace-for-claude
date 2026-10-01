@@ -15,7 +15,8 @@ The text follows Claude's language (English or German).
 
 1. Download **Usage-Pace.zip** from the latest release and unzip it.
 2. Move **Usage Pace** to your **Applications** folder and open it.
-3. Quit Claude (Cmd+Q) and open it again.
+3. The app isn't signed by a registered Apple developer, so macOS blocks it the first time. Open System Settings → Privacy & Security, click **Open Anyway** next to Usage Pace, and open it again.
+4. Quit Claude (Cmd+Q) and open it again.
 
 ### From a git clone
 
@@ -55,6 +56,7 @@ The extension only runs on `https://claude.ai` inside Claude and reads your usag
 ## Notes
 
 - Usage Pace is a community project, not an Anthropic product. Claude could drop the developer hook it relies on in any update; the daily update check lets you know when a fix is out.
+- macOS lists the login item as **Usage Pace** under System Settings → General → Login Items & Extensions. Turning it off there stops Usage Pace after your next login.
 - `REACT_PROFILE=1` is set for every app you open, not only Claude. Other apps normally ignore it.
 - If Claude opens at login before the variable is set, the bars appear after the next Claude restart.
 

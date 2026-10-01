@@ -10,6 +10,7 @@
 set -eu
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
+SELF="$HERE/$(basename "$0")"
 APP="${HERE%/Contents/Resources}"
 LABEL=io.github.lukasvanuden.usagepace
 AGENT="$HOME/Library/LaunchAgents/$LABEL.plist"
@@ -51,6 +52,8 @@ case "${1:-}" in
     /bin/cp "$HERE/Extension/"* "$EXTENSION_DIR/"
     # A new install id shows the extension again after "Uninstall…" in Claude.
     /usr/bin/sed -i '' "s/\"version\": \"\([^\"]*\)\",/\"version\": \"\1\", \"version_name\": \"install-$(/bin/date +%s)\",/" "$EXTENSION_DIR/manifest.json"
+    # macOS names login items after the file they start: inside the app this
+    # script is called "Usage Pace", so it starts the script itself, not /bin/sh.
     /bin/cat > "$AGENT" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -64,8 +67,7 @@ case "${1:-}" in
     </array>
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/sh</string>
-        <string>$HERE/usage-pace.sh</string>
+        <string>$SELF</string>
         <string>login</string>
     </array>
     <key>RunAtLoad</key>

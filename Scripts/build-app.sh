@@ -11,7 +11,9 @@ VERSION="$(/usr/bin/sed -n 's/.*"version": "\([^"]*\)".*/\1/p' "$ROOT/Extension/
 /bin/mkdir -p "$BUILD"
 /usr/bin/osacompile -o "$APP" "$ROOT/App/main.applescript"
 /bin/cp -R "$ROOT/Extension" "$APP/Contents/Resources/Extension"
-/bin/cp "$ROOT/App/usage-pace.sh" "$APP/Contents/Resources/usage-pace.sh"
+# Named after the app: the login item starts this file, and macOS shows its name.
+/bin/cp "$ROOT/App/usage-pace.sh" "$APP/Contents/Resources/Usage Pace"
+/bin/chmod 755 "$APP/Contents/Resources/Usage Pace"
 
 PLIST="$APP/Contents/Info.plist"
 set_key() {

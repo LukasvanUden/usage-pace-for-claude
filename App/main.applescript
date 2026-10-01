@@ -1,7 +1,7 @@
 -- Usage Pace.app: opening it installs (or refreshes) Usage Pace and offers
 -- to uninstall it. The login item opens it when a newer release exists, and
--- it then shows the update dialog instead. The work happens in usage-pace.sh
--- next to this script.
+-- it then shows the update dialog instead. The work happens in App/usage-pace.sh,
+-- which the build copies into the app as "Usage Pace".
 
 property releasesURL : "https://github.com/LukasvanUden/usage-pace-for-claude/releases/latest"
 
@@ -30,7 +30,7 @@ on run
 		return
 	end if
 
-	set tool to "/bin/sh " & quoted form of (appPath & "Contents/Resources/usage-pace.sh")
+	set tool to "/bin/sh " & quoted form of (appPath & "Contents/Resources/Usage Pace")
 	set wasInstalled to (do shell script tool & " status") is "installed"
 	do shell script tool & " install"
 

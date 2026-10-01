@@ -81,6 +81,9 @@ async function step(contents, name, script) {
   console.log(name + ' ' + JSON.stringify(await state(contents)));
 }
 
+// No Dock icon while the tests run.
+app.dock?.hide();
+
 app.whenReady().then(async () => {
   // The organization comes from the lastActiveOrg cookie, as on claude.ai;
   // /api/organizations lists another one to prove the cookie wins.
