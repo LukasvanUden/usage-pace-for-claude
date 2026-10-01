@@ -1,7 +1,9 @@
 #!/bin/bash
-# Builds build/Usage Pace.app (signed ad hoc) and build/Usage-Pace.zip.
+# Builds build/Usage Pace.app. Signs it ad hoc, or with the signing identity
+# given as the first argument (Scripts/release.sh passes your Developer ID).
 set -euo pipefail
 
+IDENTITY="${1:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD="$ROOT/build"
 APP="$BUILD/Usage Pace.app"
@@ -24,8 +26,11 @@ set_key CFBundleName "Usage Pace"
 set_key CFBundleShortVersionString "$VERSION"
 set_key CFBundleVersion "$VERSION"
 
-/usr/bin/codesign --force --sign - "$APP"
+if [[ -n "$IDENTITY" ]]; then
+  # Notarization needs the hardened runtime and a secure timestamp.
+  /usr/bin/codesign --force --options runtime --timestamp --sign "$IDENTITY" "$APP"
+else
+  /usr/bin/codesign --force --sign - "$APP"
+fi
 /usr/bin/codesign --verify --strict "$APP"
-
-/usr/bin/ditto -c -k --keepParent "$APP" "$BUILD/Usage-Pace.zip"
-printf 'Built: %s\n       %s\n' "$APP" "$BUILD/Usage-Pace.zip"
+printf 'Built: %s\n' "$APP"

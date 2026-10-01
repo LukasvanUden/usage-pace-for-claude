@@ -13,9 +13,9 @@ The text follows Claude's language (English or German).
 
 ## Install
 
-1. Download **Usage-Pace.zip** from the latest release and unzip it.
-2. Move **Usage Pace** to your **Applications** folder and open it.
-3. The app isn't signed by a registered Apple developer, so macOS blocks it the first time. Open System Settings → Privacy & Security, click **Open Anyway** next to Usage Pace, and open it again.
+1. Download **Usage-Pace.dmg** from the [latest release](https://github.com/LukasvanUden/usage-pace-for-claude/releases/latest) and open it.
+2. Drag **Usage Pace** onto **Applications**.
+3. Open **Usage Pace** from your Applications folder and click **OK**.
 4. Quit Claude (Cmd+Q) and open it again.
 
 ### From a git clone
@@ -67,7 +67,7 @@ npm install
 npm test
 ```
 
-`Scripts/build-app.sh` builds `build/Usage Pace.app` and `build/Usage-Pace.zip`.
+`Scripts/build-app.sh` builds `build/Usage Pace.app`, signed ad hoc. `Scripts/release.sh <notarytool profile>` builds `build/Usage-Pace.dmg` for a release: signed with your Developer ID and notarized by Apple.
 
 The tests load the extension into a stand-in for Claude ([Tests/fake-claude](Tests/fake-claude/main.js)) that serves a fake claude.ai page and usage API.
 
