@@ -109,7 +109,9 @@ app.whenReady().then(async () => {
   await delay(1000);
   await step(contents, 'RELOADED', `document.getElementById('portal-root').innerHTML = ${JSON.stringify(POPOVER)}`);
   await step(contents, 'SIDEBAR_ON', `document.querySelector('.up-settings input[data-setting="sidebar"]').click()`);
-  await step(contents, 'UNINSTALLED', `document.querySelector('.up-uninstall').click()`);
+  await step(contents, 'CONFIRM', `document.querySelector('.up-uninstall').click()`);
+  await step(contents, 'CANCELLED', `document.querySelector('.up-confirm-cancel').click()`);
+  await step(contents, 'UNINSTALLED', `document.querySelector('.up-uninstall').click(); document.querySelector('.up-confirm-remove').click()`);
   contents.reload();
   await delay(1000);
   await step(contents, 'AFTER_UNINSTALL', `document.getElementById('portal-root').innerHTML = ${JSON.stringify(POPOVER)}`);

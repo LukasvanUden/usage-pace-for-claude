@@ -51,6 +51,13 @@ on run
 	end if
 	if choice is "OK" then return
 
+	-- Ask again; Cancel is the default and stops the script.
+	if german then
+		display dialog "Usage Pace wirklich deinstallieren?" & return & return & "Die Anzeige verschwindet nach dem nächsten Claude-Neustart." buttons {"Abbrechen", "Deinstallieren"} default button "Abbrechen" cancel button "Abbrechen" with icon caution
+	else
+		display dialog "Uninstall Usage Pace?" & return & return & "The bars disappear the next time Claude restarts." buttons {"Cancel", "Uninstall"} default button "Cancel" cancel button "Cancel" with icon caution
+	end if
+
 	do shell script tool & " uninstall"
 	if german then
 		display dialog "Usage Pace ist entfernt." & return & return & "Beende Claude einmal mit ⌘Q und öffne es wieder. Die App kannst du jetzt in den Papierkorb legen." buttons {"OK"} default button 1

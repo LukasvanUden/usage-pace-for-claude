@@ -27,6 +27,8 @@
 .up-settings { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--cds-text-muted, color-mix(in srgb, currentColor 60%, transparent)); }
 .up-toggle { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
 .up-toggle input { width: 12px; height: 12px; margin: 0; accent-color: var(--cds-fill-accent, #2a78d6); cursor: pointer; }
-.up-uninstall { margin-left: auto; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
-.up-uninstall:hover { color: var(--cds-text-primary, currentColor); text-decoration: underline; }
+.up-link { padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+.up-link:hover { color: var(--cds-text-primary, currentColor); text-decoration: underline; }
+.up-uninstall, .up-confirm-question + .up-link { margin-left: auto; }
+.up-confirm-remove, .up-confirm-remove:hover { color: #e5484d; }
 .up-settings.up-removed { display: block; line-height: 1.4; }

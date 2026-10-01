@@ -62,8 +62,17 @@ test('sidebar row, popover time lines and settings', { timeout: 40_000 }, async 
 
   assert.equal(steps.SIDEBAR_ON.sidebar.header, 'Usage 16% over pace');
 
+  const confirm = steps.CONFIRM;
+  assert.equal(confirm.popover.settingsText, 'Remove Usage Pace from Claude? Cancel Remove', '"Uninstall…" asks first');
+  assert.equal(confirm.sidebar.header, 'Usage 16% over pace', 'nothing is hidden before confirming');
+  assert.equal(confirm.mutations, 0);
+
+  assert.equal(steps.CANCELLED.popover.settingsText, 'Usage Pace Sidebar Popover Uninstall…');
+  assert.deepEqual(steps.CANCELLED.popover.settings, ['sidebar:true', 'popover:false']);
+  assert.equal(steps.CANCELLED.sidebar.header, 'Usage 16% over pace');
+
   const uninstalled = steps.UNINSTALLED;
-  assert.equal(uninstalled.sidebar, null, '"Uninstall…" hides the sidebar row right away');
+  assert.equal(uninstalled.sidebar, null, 'confirming hides the sidebar row right away');
   assert.match(uninstalled.popover.removedHint, /^Hidden\. To remove Usage Pace completely/);
   assert.deepEqual(uninstalled.popover.settings, []);
   assert.equal(uninstalled.mutations, 0);

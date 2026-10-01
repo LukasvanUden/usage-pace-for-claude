@@ -27,6 +27,9 @@
       sidebar: 'Sidebar',
       popover: 'Popover',
       uninstall: 'Uninstall…',
+      confirmUninstall: 'Remove Usage Pace from Claude?',
+      cancel: 'Cancel',
+      remove: 'Remove',
       removed: 'Hidden. To remove Usage Pace completely, open the Usage Pace app in Applications or move it to the Trash.',
     },
     de: {
@@ -41,6 +44,9 @@
       sidebar: 'Seitenleiste',
       popover: 'Popover',
       uninstall: 'Deinstallieren…',
+      confirmUninstall: 'Usage Pace aus Claude entfernen?',
+      cancel: 'Abbrechen',
+      remove: 'Entfernen',
       removed: 'Ausgeblendet. Zum vollständigen Entfernen die App „Usage Pace“ in Programme öffnen oder in den Papierkorb legen.',
     },
   };
@@ -361,14 +367,27 @@
       toggle.append(input, element('span', null, strings()[name]));
       row.append(toggle);
     }
-    const remove = element('button', 'up-uninstall', strings().uninstall);
-    remove.type = 'button';
-    remove.addEventListener('click', (event) => {
-      event.stopPropagation();
-      uninstall(row);
-    });
-    row.append(remove);
+    row.append(linkButton('up-uninstall', strings().uninstall, () => confirmUninstall(row)));
     return row;
+  }
+
+  function linkButton(className, text, onClick) {
+    const button = element('button', 'up-link ' + className, text);
+    button.type = 'button';
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      onClick();
+    });
+    return button;
+  }
+
+  // "Uninstall…" asks first, in the same row.
+  function confirmUninstall(row) {
+    row.replaceChildren(
+      element('span', 'up-confirm-question', strings().confirmUninstall),
+      linkButton('up-confirm-cancel', strings().cancel, () => row.replaceWith(buildSettings())),
+      linkButton('up-confirm-remove', strings().remove, () => uninstall(row)),
+    );
   }
 
   // Runs on every DOM change, so it only touches what is missing or outdated
