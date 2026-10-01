@@ -1,0 +1,10 @@
+{
+  "name": "usage-pace-for-claude",
+  "private": true,
+  "scripts": {
+    "test": "node --test Tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "electron": "^44.5.0"
+  }
+}

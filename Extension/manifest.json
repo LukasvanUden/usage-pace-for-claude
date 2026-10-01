@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Usage Pace for Claude",
+  "version": "0.1.0",
+  "description": "Shows plan usage and weekly pace in the sidebar of the Claude desktop app.",
+  "content_scripts": [
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["widget.js"],
+      "css": ["widget.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
