@@ -2,12 +2,16 @@
 
 Your Claude plan usage, always visible in the sidebar of the Claude desktop app, with how far through each limit window you are.
 
-A **Usage** row below **More** shows how far above or below pace your weekly usage is, e.g. "21% over pace". Click it to show or hide the bars:
+A **Usage** row below **More** shows how far above or below pace your weekly usage is, e.g. "11% under pace". Click it to show or hide the bars:
+
+<img src="docs/sidebar.png" alt="The Usage row below More in the sidebar of the Claude desktop app, with the session and weekly limits" width="320">
 
 - Blue bar: usage, exactly as in Claude's own usage view.
 - Thin line above it: time elapsed in that window. Green where time is ahead of usage (room to spare), orange where usage is ahead of time (too fast).
 
 Claude's own usage popover gets the same time lines and the weekly pace next to "Plan usage limits". A **Usage Pace** row at the bottom of its usage section turns the sidebar row and the popover additions on or off.
+
+<img src="docs/popover.png" alt="Time lines above the bars in Claude's usage popover, and the Usage Pace settings row" width="480">
 
 The text follows Claude's language (English or German).
 
